@@ -15,5 +15,4 @@ configMapGenerator:
 
 images:
   - name: ghcr.io/niloysh/ueransim
-    newTag: v3.2.6-v2
-
+    newTag: v3.2.6-v3

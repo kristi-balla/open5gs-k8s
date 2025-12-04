@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM ubuntu:22.04 AS builder
+FROM ubuntu:22.04 AS builder
 
 LABEL maintainer="Niloy Saha <niloysaha.ns@gmail.com>"
 LABEL description="UERANSIM v3.2.6"
@@ -22,6 +22,7 @@ RUN git clone -b v3.2.6 -j $(nproc) https://github.com/aligungr/UERANSIM \
     && cd ./UERANSIM \
     && make
 
+# Final Stage
 FROM --platform=$TARGETPLATFORM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -40,7 +41,8 @@ WORKDIR /ueransim
 
 RUN mkdir -p config/ binder/
 
-COPY /app/* ./
+# Ensure the 'app' folder exists in local directory context
+COPY app/* ./
 RUN chmod +x init.sh
 
 COPY --from=builder /UERANSIM/build/nr-gnb .
