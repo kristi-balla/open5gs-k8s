@@ -6,9 +6,6 @@ metadata:
     app: open5gs
 data:
   bsfcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/bsf.log
-
     global:
       max:
         ue: 1024

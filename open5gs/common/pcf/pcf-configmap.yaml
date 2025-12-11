@@ -8,9 +8,6 @@ data:
   pcfcfg.yaml: |
     db_uri: mongodb://mongodb/open5gs
 
-    logger:
-      file: /open5gs/install/var/log/open5gs/pcf.log
-
     global:
       max:
         ue: 1024

@@ -6,9 +6,6 @@ metadata:
     app: open5gs
 data:
   udmcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/udm.log
-
     global:
       max:
         ue: 1024

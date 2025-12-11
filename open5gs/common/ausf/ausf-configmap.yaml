@@ -6,9 +6,6 @@ metadata:
     app: open5gs
 data:
   ausfcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/ausf.log
-
     global:
       max:
         ue: 1024

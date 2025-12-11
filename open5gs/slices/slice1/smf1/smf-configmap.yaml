@@ -8,9 +8,6 @@ metadata:
     name: smf1
 data:
   smfcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/smf.log
-
     global:
       max:
         ue: 1024

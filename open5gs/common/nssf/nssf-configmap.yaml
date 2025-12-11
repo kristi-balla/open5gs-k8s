@@ -6,9 +6,6 @@ metadata:
     app: open5gs
 data:
   nssfcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/nssf.log
-
     global:
       max:
         ue: 1024

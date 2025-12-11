@@ -8,10 +8,6 @@ metadata:
     name: upf1
 data:
   upfcfg.yaml: |
-    logger:
-        file: /open5gs/install/var/log/open5gs/upf.log
-        level: info
-
     global:
       max:
         ue: 1024

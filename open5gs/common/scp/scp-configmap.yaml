@@ -7,10 +7,6 @@ metadata:
     nf: scp
 data:
   scpcfg.yaml: |
-
-    logger:
-      file: /open5gs/install/var/log/open5gs/scp.log
-
     global:
       max:
         ue: 1024

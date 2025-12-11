@@ -7,9 +7,6 @@ metadata:
     nf: nrf
 data:
   nrfcfg.yaml: |
-    logger:
-      file: /open5gs/install/var/log/open5gs/nrf.log
-
     global:
       max:
         ue: 1024
