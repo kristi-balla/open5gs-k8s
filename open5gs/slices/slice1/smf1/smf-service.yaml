@@ -20,6 +20,8 @@ spec:
       port: 3868
     - name: diameter-over
       port: 5868
+    - name: metrics
+      port: 9090
   selector:
     app: open5gs
     nf: smf

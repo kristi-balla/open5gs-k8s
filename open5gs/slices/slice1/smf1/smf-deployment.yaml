@@ -49,6 +49,8 @@ spec:
             - name: pfcp
               containerPort: 8805
               protocol: UDP
+            - name: metrics
+              containerPort: 9090
           command: ["./open5gs-smfd"]
           args: ["-c", "/open5gs/config/smfcfg.yaml"]
           env:

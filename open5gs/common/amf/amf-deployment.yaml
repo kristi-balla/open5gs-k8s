@@ -22,47 +22,52 @@ spec:
           ]'
     spec:
       initContainers:
-      - name: wait-scp
-        image: busybox:1.32.0
-        env:
-        - name: DEPENDENCIES
-          value: scp-nscp:80
-        command: ["sh", "-c", "until nc -z $DEPENDENCIES; do echo waiting for the SCP; sleep 2; done;"]
+        - name: wait-scp
+          image: busybox:1.32.0
+          env:
+            - name: DEPENDENCIES
+              value: scp-nscp:80
+          command:
+            [
+              "sh",
+              "-c",
+              "until nc -z $DEPENDENCIES; do echo waiting for the SCP; sleep 2; done;",
+            ]
       containers:
-      - image: ghcr.io/niloysh/open5gs:v2.6.4-aio
-        imagePullPolicy: IfNotPresent
-        name: amf
-        ports:
-        - name: sbi
-          containerPort: 80
-        - name: metrics
-          containerPort: 9000
-        - name: n2
-          containerPort: 38412
-          protocol: SCTP
-        command: ["./open5gs-amfd"]
-        args: ["-c", "/open5gs/config/amfcfg.yaml"]
-        env:
-          - name: GIN_MODE
-            value: release
-        volumeMounts:
-        - mountPath: /open5gs/config/
-          name: amf-volume
-        securityContext:
-          capabilities:
-            add: ["NET_ADMIN"]
-        resources:
-          requests:
-            memory: "64Mi"
-            cpu: "20m"
-          limits:
-            memory: "512Mi"
-            cpu: "500m"
+        - image: ghcr.io/niloysh/open5gs:v2.6.4-aio
+          imagePullPolicy: IfNotPresent
+          name: amf
+          ports:
+            - name: sbi
+              containerPort: 80
+            - name: metrics
+              containerPort: 9090
+            - name: n2
+              containerPort: 38412
+              protocol: SCTP
+          command: ["./open5gs-amfd"]
+          args: ["-c", "/open5gs/config/amfcfg.yaml"]
+          env:
+            - name: GIN_MODE
+              value: release
+          volumeMounts:
+            - mountPath: /open5gs/config/
+              name: amf-volume
+          securityContext:
+            capabilities:
+              add: ["NET_ADMIN"]
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "20m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
-      - name: amf-volume
-        projected:
-          sources:
-          - configMap:
-              name: amf-configmap
+        - name: amf-volume
+          projected:
+            sources:
+              - configMap:
+                  name: amf-configmap

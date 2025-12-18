@@ -9,6 +9,8 @@ spec:
   ports:
     - name: sbi
       port: 80
+    - name: metrics
+      port: 9090
   selector:
     app: open5gs
     nf: amf
