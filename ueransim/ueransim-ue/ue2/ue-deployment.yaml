@@ -48,6 +48,12 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+        - name: pinger
+          image: curlimages/curl:latest
+          command: ["/bin/sh", "-c", "while true; do ping -I uesimtun0 -c 3 8.8.8.8; sleep 1; done"]
+        - name: curler
+          image: curlimages/curl:latest
+          command: ["/bin/sh", "-c", "while true; do curl --interface uesimtun0 -w '%{http_code}\n' http://www.google.com; sleep 1; done"]
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
